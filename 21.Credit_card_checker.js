@@ -1,19 +1,17 @@
-
 /*
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%  CREDIT CARD CHECKER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%  CREDIT CARD CHECKER  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--------------- checa para saber se um cartão de crédito é valido ou
-               não
--------------- usa luhn algorithm
--------------- .reduce()  .filter () .forEach() [... new Set(arr)]
+----------------------------------- Discovers if a credit card is valid or not
+---------------------------------------------------------- uses luhn algorithm
+-------------------------- .reduce()  .filter () .forEach() [... new Set(arr)]
 
 
 */
 
-
+//-------------------- information given --------------------------------------
 
 // All valid credit card numbers
 const valid1 = [4, 5, 3, 9, 6, 7, 7, 9, 0, 8, 0, 1, 6, 8, 0, 8]
@@ -41,12 +39,13 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  BEGGINING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-//***********************  FUNCTION  ***********************************
-//**********************************************************************
-//-------Luhn algorithm: começa do ultimo digito. vou alternando entre x2
-//        ou x1. Se for >9, eu subtraio 9. Somo todos os resultados na função
-//        validateCred ()
+
+
+//****************************  FUNCTION  ************************************
+//----Luhn algorithm (): beggins at the last digit. I will be multiplying by 1
+//                       or 2. If the result is >9, I need to subtract by 9. 
 
 function luhnAlgorithm(index,num) {
     let multiply = index%2 ==0 ? num*2 : num;
@@ -54,34 +53,44 @@ function luhnAlgorithm(index,num) {
 }
 
 
-// *************************  FUNCTION  ******************************
-//********************************************************************
-//------- uses Luhn Algorithm to check if a credit card number is valid
+//************************** FUNCTION ****************************************
+//------------validatingLuhnAlgorithm ():  sum of all the resultas of the Luhn 
+//                                         algorithm
+
+function validatingLuhnAlgorithm (arr) {
+    let validating =arr.reduceRight((total, atual, index) => {total += luhnAlgorithm(index,atual); return total }, 0) 
+    return validating
+}
+
+
+// ******************************  FUNCTION  *********************************
+//-----validateCred (): is the credit card number valid? returns true or false 
+//                      using validatigLuhnAlgorithm () and luhnAlgorithm ()
+
 function validateCred(arr) {
     if (arr.length !==16) {
        return false
     }
-    
-    let validating =arr.reduceRight((total, atual, index) => {total += luhnAlgorithm(index,atual); return total }, 0) 
-    
-    return validating%10 ==0 ? true : false
-
+    return validatingLuhnAlgorithm(arr) % 10 == 0 ? true : false
 }
 
-//*****************************************************************
-//***************************  FUNCTION  **************************
-//-------------------------------------- find all the invalid cards
+
+//******************************  FUNCTION  *********************************
+//---------------------------------------------------- find all invalid cards
+
 let invalid = [];
+
 function findInvalidCards (arr) {
     invalid = arr.filter(item => !validateCred(item))
     return invalid
 }
 
 
-//******************************************************************
-//***************************  FUNCTION  ***************************
-//-------------------------------------- find all invalid companies
+//*********************************  FUNCTION  *******************************
+//------------------------------------------------- find all invalid companies
+
 let invalidCompanies =[]
+
 let idInvalidCardCompanies = function (arr) {
     arr.forEach(element => {
     switch (element[0]) {
@@ -90,17 +99,15 @@ let idInvalidCardCompanies = function (arr) {
         case 5: invalidCompanies.push("mastercard"); break
         case 6: invalidCompanies.push("discover"); break
         default: console.log("undentified company")
-    }
-} ) 
+    }} ) 
 
-//------------------------------------------- in comments A
+    //------------------------------------------------explanation in COMMENTS A
     return [...new Set(invalidCompanies)]
 }
 
 
-//**********************************************************************
-//*********************  FUNCTION **************************************
-//-------------------------------------- convert str into a number array
+//****************************  FUNCTION **************************************
+//--------------------------------------------- convert str into a number array
 
 function strToNum(str) {
     let arr = str.split("");
@@ -108,22 +115,56 @@ function strToNum(str) {
 }
 
 
-//-----------------------------------------------------------------------------------
+//******************************  FUNCTION  ***********************************
+//-------------------------validates an invalid card (explanation in COMMENTS B
+
+let verifiedNumber =0;
+let sliced =[]
+
+function invalidToValid (arr) {
+    sliced = arr.slice(0,15);
+    verifiedNumber = validatingLuhnAlgorithm (sliced)
+    sliced.push(verifiedNumber%10)
+    return sliced
+}
+
+
+//------------------------------------------------------------------------------
+
+/*     UNCOMMENT TO TEST
+
 findInvalidCards(batch)
 console.log(idInvalidCardCompanies(invalid))
 console.log(strToNum("207284"))
+console.log(validateCred(invalid2));
+console.log(invalidToValid(invalid4))
+
+*/
+
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  THE END  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 /*
 
-************************************************************************************
-******************************  COMMENTS ******************************************
-************************************************************************************
+*********************************************************************************
+********************************  COMMENTS **************************************
+*********************************************************************************
 
 --------------A)
      new Set(array) -> remove duplicates
     [... new Set()] -> convert back to array
 
+
+------------- B)
+        to validade an invalid card I cut the first 15 numbers (the 16º is the 
+        validation number that we want to find). I then apply validatingLuhnAlgorithm 
+        function. The validation code 
+
 */
+
+
 
 
 
