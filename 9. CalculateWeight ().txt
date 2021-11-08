@@ -1,0 +1,23 @@
+//------------------CalculateWeight-----------------
+// ----calcula peso do planeta comparado a Tera-----
+
+
+
+const calculateWeight = (earthWeight, planet) =>
+{
+  weight = earthWeight
+  switch (planet) 
+  {
+    case "Mercury":  return weight *= 0.378;
+    case 'Venus': return weight *= 0.907;
+    case "Mars" : return weight *= 0.377;
+    case "Jupiter" : return weight *= 2.36;
+    case "Saturn" : return weight *=  0.916;
+    default : return "Invalid Planet Entry. Try: Mercury, Venus, Mars, Jupiter, or Saturn.";
+
+  }
+}
+
+console.log(calculateWeight(100, 'Venus'))
+
+//I am adding a comment here!
