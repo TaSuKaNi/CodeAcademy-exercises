@@ -1,0 +1,26 @@
+//-------print the age in dog years------
+
+//----------codeAcamedy verison
+let myAge = 28;
+let earlyYears = 2;
+earlyYears *=10.5;
+lateYears = myAge -2;
+lateYears *= 4;
+
+let myAgeDogYears = earlyYears + lateYears;
+let myName = "TATIANE".toLowerCase()
+
+console.log(`My name is ${myName}. I am ${myAge} years old in human years which is ${myAgeDogYears} old in dog years.`)
+
+
+
+//---------my version
+let age = 2;
+let dogAge;
+
+if (age < 2)
+  dogAge = age*10.5
+else
+  dogAge = 2*10.5 + (age -2)*4;
+
+console.log(`With my calculation, my age of ${age} years old as a human is equal to ${dogAge} years as a dog!`); 

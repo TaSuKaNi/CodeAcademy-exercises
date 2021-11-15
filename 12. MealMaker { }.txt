@@ -1,0 +1,67 @@
+// ------------------------------------------- MEAL MAKER --------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+//----------------Do a three course dishes randomly. I have appeptizer, main and dessert-------------------------
+//--------------------------------------------------------------------------------------------------------------
+
+
+//**********************************************OBJECT*************************************************************
+
+const menu ={
+    _course: {
+      appetizers: [], 
+      mains: [], 
+      desserts: []
+    },
+  
+    //--------------------FUNCTION-----------------------------------------------
+    //------------------------------------------------------------------------for adding new dishes without using _course
+  
+    addDishToCourse (courseName, dishName, dishPrice) {
+        const dish = {
+          name: dishName,
+          price: dishPrice
+      }
+      this._course[courseName].push(dish);
+     
+    } ,
+  
+  //-------------------FUNCTION---------------------------------------------
+  //----------------------------------------------------------------------choose a random index of the array and give the dish
+  //----- ---------------------------------------------------------------courseName is the string "mains", "desserts" or "appetizers"
+  
+    getRandomDishFromCourse (courseName) {
+    const dishes = this._course[courseName];
+    const randomIndex = Math.floor(Math.random()*dishes.length)
+    return dishes[randomIndex]
+  },
+  
+  //----------------------FUNCTION ---------------------------------------
+  //--------------------------------------------------------------------- give all the names and total price
+  generateRandomMeal () {
+    const appetizers = this.getRandomDishFromCourse("appetizers");
+    const main = this.getRandomDishFromCourse("mains");
+    const dessert = this.getRandomDishFromCourse("desserts");
+  
+    const totalPrice = appetizers.price + main.price + dessert.price;
+    console.log(`Your three course dishes are: ${appetizers.name}, ${main.name} and ${dessert.name}! The total price is: ${totalPrice}`);
+  
+  }
+  
+  };
+  
+  //******************************************END OF OBJECT ***************************************************************************
+  
+  
+menu.addDishToCourse('appetizers', 'Caesar Salad', 4.25);
+menu.addDishToCourse('appetizers', 'Salad', 4);
+menu.addDishToCourse('appetizers', 'Caesar ', 3.25);
+
+menu.addDishToCourse('mains', 'meat', 5);
+menu.addDishToCourse('mains', 'rabid meat', 7);
+menu.addDishToCourse('mains', 'goat meat', 1);
+
+menu.addDishToCourse('desserts', 'chocolate', 2);
+menu.addDishToCourse('desserts', 'choco', 34);
+menu.addDishToCourse('desserts', 'late', 23); 
+
+menu.generateRandomMeal();

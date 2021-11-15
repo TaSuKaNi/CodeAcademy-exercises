@@ -1,0 +1,32 @@
+//---------------HOW OLD ARE YOU ------------------
+//---------- tell me the age of the person in the given year
+
+
+
+function howOld (age, year)
+{
+  const yearOfBirth = today - age;
+
+  if (yearOfBirth > year)
+  {
+   return `The year ${year} was ${yearOfBirth - year} years before you were born`
+
+  } 
+  else if (today > yearOfBirth && today < year)
+  {
+     return `You will be ${year - yearOfBirth} in the year ${year}`
+  }
+  else 
+  {
+    return `You were ${year - yearOfBirth} in the year ${year}`
+  }
+
+}
+
+
+//--------------------------------------------discover what year we are in
+
+let today = new Date().getFullYear()
+
+//----------------------------------------------print
+console.log (howOld(32,2030));

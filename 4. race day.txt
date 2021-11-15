@@ -1,0 +1,39 @@
+// ------------race day ------
+// I say what time the runner is going to run based on age and if he got early
+
+// I am taking the number of the person between 1 and 1k
+
+let raceNumber = Math.floor(Math.random() * 1000);
+let early = true;
+let runnerAge = 19;
+
+//function to help me print the info
+
+function print (a,b) {
+  return console.log(` Number: ${a} \n Race time: ${b}`);
+}
+
+//--------- -----------the conditions!----------------------------------------------------
+
+if (runnerAge > 18) {
+  //------------------------------ >18 have numbers >1000 ; <18 have numbers <1000
+	raceNumber += 1000;
+  
+  	if (early) {
+    		print(raceNumber,"9:30");
+    		//----------------------------->18 and early run at this time
+  	} else if (!early) {
+    		print(raceNumber,"11:00") ;
+    		//---------------------------- >18 and late run at this time
+ 	} 
+ 
+} else if (runnerAge < 18) {
+  print(raceNumber,"12:30");
+  //------------------------------ <18 run at this time
+
+} else {
+  console.log ("If you are 18 years old, please go to the registration desk!");
+  //------------------------------- =18 needs to aske someone else
+}
+
+-----------------------------------------------END--------------------------------------------

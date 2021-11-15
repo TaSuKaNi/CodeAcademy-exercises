@@ -1,0 +1,54 @@
+// ---------------------------eight balls----------
+//-----use a random number and switch function to give an answer---
+
+
+//Say ""hi"" and use "User" if not given a name------------
+let name ="Tati";
+userName = name !== "" ? name : "User";
+console.log(`Hello, ${userName}!`)
+
+//Question of the person
+let userQuestion = "Will I have a baby tonight?";
+console.log(`${userName}, you asked me: "${userQuestion}". \n Are you sure you really want to now it?`);
+
+//generate a random number-----------
+
+const randomNumber 
+= Math.floor(Math.random()*8);
+
+//use switch to get the answer-------------------
+
+let eightball = "";
+
+switch (randomNumber) {
+  case 0:
+    eightball = "It is certain"
+    break 
+  case 1:
+    eightball = "It is not certain"
+    break 
+  case 2:
+    eightball = "If you really want to"
+    break
+  case 3:
+    eightball = "no way!"
+    break
+  case 4:
+    eightball = "Fuck off!"
+    break
+  case 5:
+    eightball = "Did you try asking Santa?"
+    break
+  case 6:
+    eightball = "You can always pray"
+    break
+  case 7:
+    eightball = "maybe in another life!"
+    break
+  case 8:
+    eightball = "First you need to do something about your face!"
+    break
+}
+
+// give the answer ------------------------
+console.log(`answer: ${eightball}`)

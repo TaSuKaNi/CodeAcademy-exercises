@@ -1,0 +1,54 @@
+// -------------------- final grade----------
+// function to take three grade, calculate the meand and return
+
+
+// ------------------using switch------------------------------------------------
+
+
+function finalGrade (n1,n2,n3)
+{
+  const ave = (n1+n2+n3)/3;
+  switch (true)
+  {
+    case ave < 0 || ave >100 : return "You have entered an invalid grade";
+    case ave < 59 : return "F";
+    case ave < 69 : return "D";
+    case ave < 79 : return "C";
+    case ave < 89 : return "B"
+    case ave <= 100 : return "A"
+  }
+}
+
+console.log(finalgrade (92,94,91);
+
+
+//---------------------------------ALTERNATIVES ---------------------
+
+// ----------------------------- using if ------------------------
+
+const finalGrade = function(n1, n2, n3)
+{
+  let ave = (n1+n2+n3)/3;
+  return ave < 0 || ave >100 ? "You have entered an invalid grade" :
+    ave < 59 ?  "F":
+    ave < 69 ?  "D":
+    ave < 79 ?  "C":
+    ave < 89 ? "B": "A";
+}
+
+//-----------------------------------------------COMMENTS---------------------
+/*
+
+remember! if you use switch, you need to compare the same type! if 
+i want to know if the statement is true, i will put switch(true)
+
+switch(boolean):
+case boolean:
+
+switch(number)
+case number:
+
+switch(string)
+case string:
+
+*/

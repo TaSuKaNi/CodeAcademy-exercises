@@ -1,0 +1,49 @@
+//-----------------------TEAM STATS
+//-------------------------DÁ OS JOGADORES E JOGOS como objeto
+
+
+//**********************************OBJETO*************************************
+//****************************************************************************
+
+const team = {
+  _players: [] ,
+  _games: [] ,
+
+//-------------------------------FUNCTION--------------------------------------- 
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------adiciona o jogador
+
+  addPlayer (name, surname, age) {
+    let player = {
+      firstName: name ,
+      lastName: surname ,
+      age: age
+    }
+    this._players.push(player);
+  } ,
+
+//----------------------------FUNCTION------------------------------------
+//------------------------------------------------------------------------
+//--------------------------------------------------------adiciona o jogo
+
+  addGame(opponent, teamPoints, opponentPoints)
+  {
+    let game = {
+      opponent: opponent ,
+      teamPoints: teamPoints ,
+      opponentPoints: opponentPoints
+    }
+    this._games.push(game);
+  }
+}
+
+//******************************************************************************
+//******************************FIM OBJETO**************************************
+
+team.addPlayer ("Tati", "assun", 18);
+team.addPlayer("Pablo", "Sanchez", 21);
+team.addGame("arruba", 23, 47);
+team.addGame("doha", 34, 92);
+
+console.log (team._players);
+console.log(team._games);

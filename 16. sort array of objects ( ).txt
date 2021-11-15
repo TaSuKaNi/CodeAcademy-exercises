@@ -1,0 +1,40 @@
+/*
+
+***************************************************************************
+**************** SORT ARRAY OF OBJECTS ************************************
+***************************************************************************
+
+*/
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++  FUNCTION  +++++++++++++++++++++++++++++++++++++++++++++
+
+
+const sortSpeciesByTeeth = arr => {
+  return arr.sort((a,b) => a.numTeeth > b.numTeeth ? 1 : -1)
+}
+
+
+const speciesArray = [ {speciesName:'shark', numTeeth:50}, {speciesName:'dog', numTeeth:42}, {speciesName:'alligator', numTeeth:80}, {speciesName:'human', numTeeth:32}];
+
+console.log(sortSpeciesByTeeth(speciesArray))
+
+
+
+/*
+
+**************************************************************************
+************************** COMMENTS  *************************************
+**************************************************************************
+
+.sort ((x,y) => x > y ? 1 : -1)     ou   .sort((x, y) => return x-y)
+
+o que significa? se x for maior que y, ele vai colocar y primeiro e x depois (ordem crescente)
+
+.sort ((x,y) => x < y ? 1 : -1)     ou   .sort((x, y) => return y-x)
+
+ ele coloca o x primeiro e o y depois (ordem decrescente)
+
+
+*/

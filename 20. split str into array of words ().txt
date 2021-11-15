@@ -1,0 +1,10 @@
+
+function splitStr (str) {
+    return str.split(" ")
+}
+
+
+
+teste = "I am the most beautiful woman in the world!"
+console.log(splitStr(teste));
+

@@ -1,0 +1,43 @@
+/*
+
+***************************************************************************************************************
+*********************************  SUBSTRING*******************************************************************
+***************************************************************************************************************
+
+-------------function subLength() that takes 2 parameters, a string and a single character. The function should 
+search the string for the two occurrences of the character and return the length between them including the 2 
+characters. If there are less than 2 or more than 2 occurrences of the character the function should return 0.
+
+Examples:
+subLength('Saturday', 'a'); // returns 6
+subLength('summer', 'm'); // returns 2
+subLength('digitize', 'i'); // returns 0
+subLength('cheesecake', 'k'); // returns 0
+
+*/
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++  FUNCTION  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+let allIndex = [];
+
+//--------------------------------------------------------------- allIdex -> salvo todos os index que deu match
+
+function subLength(str, char) {
+ 
+ let n=0
+
+//----------------------------------------------------------------------------------------- acho todos os index
+
+  while (str.includes(char, n)){
+    i= str.indexOf(char,n)
+    allIndex.push(i);
+    n =i+1
+    }
+
+//-------------------------------------------------------------------- implemento a condição expressa na questão
+  return allIndex.length ==2 ? allIndex[1] -allIndex[0]+1: 0;
+
+}
+
+console.log(subLength("I ylovee youo", "y"))

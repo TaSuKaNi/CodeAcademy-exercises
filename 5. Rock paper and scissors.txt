@@ -1,0 +1,50 @@
+//------------------play a rock, paper and scissors gamr!
+// ----------- choice is random! (i did differently for codeAcademy
+
+
+// ----------------------------------- random choice of paper rock and scissors
+function randomChoice () 
+{
+    randomNumber =Math.floor(Math.random()*3);
+    switch (randomNumber)
+    {
+        case 0: return "rock";
+        case 1: return "paper";
+        case 2: return "scissors";
+    }
+
+}
+
+//----------------------------------function to compare the results!
+
+function compare (A, B) 
+{
+    if (A === B) 
+    {
+        console.log ("\n We have a tie!")
+    } 
+    else if 
+         ( A === "scissors" && B === "paper" 
+         || A === "rock" && B === "scissors" 
+         || A === "paper" && B === "rock" ) 
+    {
+         console.log ("\n Ana wins!")
+    } 
+
+    else 
+    {
+         console.log ("\n Bob wins!")
+    }
+}
+
+
+//-------------------------------------here are the specific comands
+const ana = randomChoice ();
+const bob = randomChoice ();
+
+console.log(` Ana: ${ana} \n Bob: ${bob}`)
+compare (ana,bob)
+
+
+//-------------------------------------------------END----------------------------------------
+

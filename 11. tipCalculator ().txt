@@ -1,0 +1,32 @@
+//-------------------TIP CALCULATOR () 
+// -----------------------calculate tips using switch
+
+
+const tipCalculator = (quality, total) =>
+{
+ let tip=0;
+  switch (quality)
+  {
+    case "bad": tip = 0.05 ; break ;
+    case "ok": tip = 0.15 ; break ;
+    case "good": tip = 0.2 ; break ;
+    case "excellent": tip = 0.3 ; break ;
+    default: tip = 0.18;
+  }
+  console.log(tip)
+  return total*tip;
+}
+
+
+console.log(tipCalculator("bad", 100)) //should return 20
+
+
+
+//------------------------------------------ COMMENTS -----------------------
+/*
+
+eu tinha esquecido de colocar o break sepado por ; (se eu colocasse "0.5 break;" estaria errado, porque o break precisa estar em um comando separado
+então o certo é "0.05 ; break ;
+também serve colocar return. Preciso de um return ou break para o switch entender que quero esse resultado
+
+*/

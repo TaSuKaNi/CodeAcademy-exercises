@@ -1,0 +1,239 @@
+//-----------------------------------------------------------------------------------------
+//-----------------------------------MINILINTER--------------------------------------------
+//-----------------------------------------------------------------------------------------
+//----------FAZ ALGUMAS MUDANÇAS EM UM TEXTO, COMO PALAVRAS REPETIDAS----------------------
+//-----------------------------------------------------------------------------------------
+
+
+
+
+//----------------------------------INFORMAÇÕES DADAS-------------------------------------
+
+let story = 'Last weekend, I took literally the most beautiful bike ride of my life. The route is called "The 9W to Nyack" and it actually stretches all the way from Riverside Park in Manhattan to South Nyack, New Jersey. It\'s really an adventure from beginning to end! It is a 48 mile loop and it basically took me an entire day. I stopped at Riverbank State Park to take some extremely artsy photos. It was a short stop, though, because I had a really long way left to go. After a quick photo op at the very popular Little Red Lighthouse, I began my trek across the George Washington Bridge into New Jersey.  The GW is actually very long - 4,760 feet! I was already very tired by the time I got to the other side.  An hour later, I reached Greenbrook Nature Sanctuary, an extremely beautiful park along the coast of the Hudson.  Something that was very surprising to me was that near the end of the route you actually cross back into New York! At this point, you are very close to the end.';
+
+let overusedWords = ['really', 'very', 'basically'];
+
+let unnecessaryWords = ['extremely', 'literally', 'actually' ];
+
+
+
+// ------------------------------TRANSFORMANDO A STRING EM ARRAY---------------------------
+
+
+const storyArray = story.split(" ")
+console.log(`You had ${storyArray.length} words`)
+
+
+//---------------------------DEIXA AS PALAVRAS QUE NÃO SAO DESNECESSARIAS------------------
+//--------------------------------------------------compara com unecessaryWords------------
+
+
+const betterWords = storyArray.filter(char =>
+{
+//----------------------------------------------------se a palavra não está na array de--- 
+//                                                    unnecesaryWords---------------------
+
+  if (!unnecessaryWords.includes(char)) {
+    return char;
+  }
+})
+
+console.log(`You have ${betterWords.length} words now`);
+
+
+
+//-----------------CONTANDO ALGUMAS PALAVRAS QUE USEI DEMAIS (OVERUSEDWORDS)---------------
+
+//-----------------------------------------crio um objeto para salvar os valores repetidos- 
+
+
+
+const repetition ={};
+for (const word of overusedWords){
+  repetition[word] = 0;
+}
+
+
+//---------------------------------------------------conto as palavras----------------------
+
+betterWords.filter(char => {
+  if (overusedWords.includes(char)) {
+    return repetition[char]++
+  }
+})
+
+
+
+//---------------------OBJECT TO STRING -----------------------------------------------------
+//-------------------------------------JSON.stringify (obj) transforma objeto em string e---- 
+//                                     me permite logá-lo em uma frase-----------------------
+
+console.log (`You have ${JSON.stringify(repetition)} repeated words`)
+
+
+//------------------------------------------HOW MANY SENTENCES-------------------------------
+// ----------------------------------------calculo numero de sentenças-----------------------
+
+let count = 0;
+betterWords.forEach(char => {
+  if (["!", "?", ";", "."].includes(char.slice(-1))) {
+    count++;
+  }
+})
+
+console.log(`you have ${count} sentences`);
+
+
+
+
+//---------------------------- BACK TO STRING-------------------------------------------
+
+
+//   console.log(betterWords.join(" "));
+
+
+//+++++++++++++++++++++++++++++++  CHANGE WORDS TO STANDARD ++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//--------------------------------------tira char especificos como: . ! ? --------------
+//--------------------------------------explanation in the comments!--------------------
+
+standardWord = [];
+for (const words of betterWords) {
+  const a = words.toLowerCase().replace(/!|,|:|'|"/g, "").replace(".", "").replace("?", "")
+  standardWord.push(a);
+}
+//console.log(standardWord);
+
+//+++++++++++++++++++++++++  WORD THAT APPEARS THE MOST  ++++++++++++++++++++++++++++++++
+
+
+mostWords ={};
+for (const word of standardWord){
+  mostWords[word] = (mostWords[word] || 0) + 1;
+}
+
+//console.log(mostWords);
+
+
+//------------------------------------------- Object.keys (vê as propriedades------------- 
+//                                            do objeto). Crio uma especie de array-------
+
+var arrayMostWords = Object.keys(mostWords).map( propriedade => { 
+  return mostWords[propriedade];
+})
+
+
+var min = Math.min.apply( null, arrayMostWords );
+var max = Math.max.apply( null, arrayMostWords );
+
+console.log( 'Min value: ' + min + ', max value: ' + max )
+
+//--------------------------------------------------MAth.min.apply nos comentários!---------
+
+
+
+
+
+/*
+//*******************************************************************************************
+//***********************************   ANOTAÇÕES!  *****************************************
+//*******************************************************************************************
+
+//-------------------------------------------------------------------------------------------
+//--------------------------ÚLTIMO CHAR EM UMA STRING----------------------------------------
+//-------------------------------------------------------------------------------------------
+//----------------------------i can get the last char in a string using .slice(-1)-----------
+
+
+
+//console.log("char".slice(-1))
+
+
+---------------------------------------------------------------------------------------------
+-------------------------- MIN MAX DE UMA ARRAY OU OBJECT------------------------------------
+---------------------------------------------------------------------------------------------
+----------------------usa Math.min.aplly()---------------------------------------------------
+//----obs: "null" não tem significado, poderia ser qualquer nome ai. Desse modo,-------------
+//        aplicar o math.min para a array----------------------------------------------------
+
+
+const arr = [3,4,7,9,13]
+var min = Math.min.apply( null, arr );
+var max = Math.max.apply( null, arr );
+
+console.log( 'Min value: ' + min + ', max value: ' + max )
+
+//-------------------------------------------------------------------------------------------
+//-------------------------------CHANGE WORDS TO STANDARD------------------------------------
+//----------------------------using .replace() com REGEX ------------------------------------
+
+
+//obs: string.replace("o que quero mudar", "pelo que quero mudar") 
+// REGEX: modo de escrever mais economico. no que "quero mudar" posso escrever: / alguma coisa  /g 
+// se forem varias coisas: /coisa1|coisa2/g
+//esse g significa que vai procurar todos os resultados que batem!
+
+
+const lettters = "a3d4_*"
+console.log(lettters.replace(/4|3/g, " "))
+
+
+
+
+---------------------------------------------------------------------------------------------
+//---------------------------------------CONTAR PALAVRAS PRÉ-DETERMINADAS--------------------
+//-------------------------------------------------------------------------------------------
+//--------crio um objeto para salvar os valores repetidos (tem 2 metodos)--------------------
+
+  
+1º)      	const repetition = {
+  					really: 0 ,
+ 					  very: 0 ,
+  					basically: 0
+				  } 
+
+2º)
+
+				const repetition ={};
+				for (const word of overusedWords){
+  					repetition[word] = 0;
+				}
+//obs: overusedWords() é uma array já declarada
+
+
+
+
+
+----------------------CONTADOR DE PALAVRAS--------------------------------------------------
+//------------------------------------------------------------------------------------------
+----------------------------------como fazer um contador de palavras com um objeto onde-----
+todas as palavras ainda não existem---------------------------------------------------------
+//------------------------------------------------------------------------------------------
+
+              1º opção)
+                        const mostWords ={};
+                        
+                        for (const word of betterWords){
+                          if (mostWords[word])
+                              { mostWords[word]++;}
+                          else {
+                              mostWords[word] = 1;
+                          }
+                        }
+
+                //-----------------------------se já tiver uma key com word, eu pego o------ 
+                valor dela +1. Se não existe, eu vou criá-la e coloca-la = 0 e somar com 1--
+
+
+              2º opção)
+                        for (const word of betterWords){
+                          frequency[word] = (frequency[word] || 0) + 1;
+                        }
+                        
+
+********************************************************************************************
+*******************************************END OF COMMENTS**********************************
+********************************************************************************************
+
+*/

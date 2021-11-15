@@ -1,0 +1,35 @@
+// --------------lifePhase()---------------
+// -------- classificar por idade. age <0 ou >140 não sao validas
+// ---- i can't use switch because i need to compare the numbers!
+
+
+function lifePhase(age)
+{
+
+return  age < 0 || age > 140 ? "This is not a valid age" :
+  age < 3 ? "baby" :
+  age < 12 ? "child" :
+  age < 19 ? "teen" :
+  age < 64 ? "adult" : "senior citizen";
+}
+
+console.log (15);
+
+
+
+//-----------------------------------alternatives-----------
+// --------------------------using switch-------------------
+
+` 
+switch (true) {
+  case age < 0: age = 141;
+  case age < 3: return 'baby';
+  case age < 13: return 'child';
+  case age < 20: return 'teen';
+  case age < 65: return 'adult';
+  case age < 75: return 'senior';
+  case age < 141: return 'elderly';
+  default: return "This is not a valid age."
+}
+
+`

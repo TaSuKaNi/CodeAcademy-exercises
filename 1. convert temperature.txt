@@ -1,0 +1,18 @@
+//--------------Convert temperature--------
+//-------------with C, F, K and N----------
+// para melhorar:colocar input e escolha do usuario de um para outro
+
+
+
+//kelvin to celcius
+const kelvin = 0;
+const celcius =kelvin - 273;
+
+//celcius to fahrenheit
+let fahrenheit = Math.floor(celcius*(9/5) + 32);
+
+//celcius to Newton
+let newton = Math.floor(celcius*(33/100));
+console.log(`The temperature is ${newton} in newton!`);
+
+console.log(`The temperature is ${fahrenheit} degrees in Fahrenheit.`);

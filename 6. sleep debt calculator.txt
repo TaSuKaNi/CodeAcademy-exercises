@@ -1,0 +1,66 @@
+// ---------------calculate time of sleep
+
+
+//------------sleep per day of week
+const getSleepHours = day => 
+{
+  switch (day) 
+  {
+      case "monday": return 8;
+      case "tuesday": return 8;
+      case "wednesday": return 8;
+      case "thursday": return 8;
+      case "friday": return 8;
+      case "saturday": return 8;
+      case "sunday": return 8;
+  }
+}
+
+//-------------------sleep of the whole week
+const getActualSleepHours = () => 
+{
+return getSleepHours("monday") + getSleepHours("tuesday") + getSleepHours("wednesday") + getSleepHours("thursday") +getSleepHours("friday") +getSleepHours("saturday") + getSleepHours("sunday");
+}
+//------------------I try to compare ideal and real hours of sleep------------
+
+
+
+//-----------------FUNCTION--------------ideal hours of sleep
+
+function getIdealSleepHours ()
+{
+  const idealHours = 8;
+  return idealHours*7;
+}
+
+
+//--------------FUNCTION-----------------compare ideal and real sleep time
+
+const calculateSleepDebt = () => 
+{
+  const actualSleepHours = getActualSleepHours ();
+  const idealSleepHours = getIdealSleepHours();
+  
+  if (actualSleepHours === idealSleepHours)
+  {
+      console.log("perfect amount of sleep");
+  }
+  else if (actualSleepHours > idealSleepHours)
+  {
+      console.log(`you slept too much! Over ${actualSleepHours - idealSleepHours} hours`);
+  }
+  else
+  {
+      console.log (`you didn't sleep enough! Sleep more ${idealSleepHours - actualSleepHours} hours`);
+  }
+
+
+}
+
+
+//--------------------------------------------asking everything to work
+
+calculateSleepDebt()
+
+//-------------------------------------------------------END----------------------------
+
